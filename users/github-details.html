@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Details</title>
+    <!-- link-css -->
+    <link rel="stylesheet" href="../css/link.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <nav class="nav">
+        <div class="nav-left">
+          <img src="../images/github.png" alt="GitHub" />
+          <h1 class="logo">GitHub Search</h1>
+        </div>
+        <ul class="menu">
+          <li class="title-menu"><a href="../weather.html">Weather</a></li>
+          <li class="title-menu"><a href="../time.html">Time</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- form-control -->
+    <div class="form-control">
+      <a href="javascript:void(0)" onclick="goBack()" class="back-btn"
+        >Back To Search</a
+      >
+      <span class="hireable">
+        Hireable:
+        <img src="../images/cross.png" width="12" height="12" alt="cross" />
+      </span>
+      <div class="user-card" id="user-card">Loading user...</div>
+      <div id="user-activity"></div>
+      <ul class="repo-list" id="repo-list">
+        Loading repos...
+      </ul>
+    </div>
+
+    <!-- link-js -->
+    <script src="../js/github-details.js"></script>
+  </body>
+</html>

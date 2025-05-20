@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <style>
+      /* * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Tahoma, sans-serif;
+        background: linear-gradient(135deg, #a8edea, #fed6e3);
+        color: #333;
+        height: 100vh;
+      }
+
+      header {
+        background-color: #dc3545;
+        padding: 1rem 2rem;
+        color: #fff;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .menu {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .menu li {
+        list-style: none;
+      }
+
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      .menu a:hover {
+        color: yellow;
+      }
+
+      .page-title {
+        text-align: center;
+        margin: 2rem 0 1rem;
+        font-size: 1.5rem;
+      }
+
+      .status-control {
+        background-color: #fff;
+        padding: 2rem;
+        margin: 0 auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        text-align: center;
+      }
+
+      h3 {
+        margin-bottom: 1rem;
+      }
+
+      .cityInput,
+      .getWeatherBtn {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .getWeatherBtn {
+        background-color: #4caf50;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .getWeatherBtn:hover {
+        background-color: #388e3c;
+      }
+
+      #weatherResult {
+        margin-top: 1rem;
+        text-align: right;
+        line-height: 1.8;
+      }
+
+      #error-message {
+        display: none;
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+      }
+
+      .error-icon {
+        background-color: black;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      } */
+    </style>
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/weather.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <ul class="menu">
+          <li>
+            <a class="title-menu" href="./users/github-search.html">
+              GitHub User Search
+            </a>
+          </li>
+        </ul>
+        <ul class="menu">
+          <li class="title-menu"><a href="./time.html">time</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h2 class="page-title">This is the weather page.</h2>
+
+    <form class="status-control" id="weatherForm">
+      <h3>بررسی وضعیت آب‌وهوا</h3>
+      <input
+        type="text"
+        id="cityInput"
+        class="cityInput"
+        placeholder="اسم شهر یا منطقه خود را وارد کنید"
+      />
+      <button type="submit" class="getWeatherBtn">نمایش وضعیت</button>
+      <div id="error-message"></div>
+      <div id="weatherResult"></div>
+    </form>
+
+    <script>
+      const ApiKey = "69f646d7ada33bb8f0e2c8f6345e7f6d";
+      const form = document.getElementById("weatherForm");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const InputElement = document.getElementById("cityInput");
+        const resultBox = document.getElementById("weatherResult");
+        const errorBox = document.getElementById("error-message");
+        const city = InputElement.value.trim();
+
+        
+
+        errorBox.style.display = "none";
+        errorBox.innerHTML = "";
+        resultBox.innerHTML = "";
+
+        function showError() {
+          errorBox.style.display = "flex";
+          setTimeout(() => {
+            errorBox.style.display = "none";
+            errorBox.innerHTML = "";
+          }, 3000);
+        }
+
+        if (!city) {
+          errorBox.innerHTML = `
+              <p>لطفاً نام شهر را وارد کنید.</p>
+              <span class="error-icon">!</span>
+            `;
+          showError();
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=metric&lang=fa`
+          );
+          const data = await response.json();
+
+          if (data.cod !== 200) {
+            errorBox.innerHTML = `
+                <p>شهر یافت نشد.</p>
+                <span class="error-icon">!</span>
+              `;
+            showError();
+            return;
+          }
+
+          resultBox.innerHTML = `
+              <h3> نام شهر: ${data.name}</h3>
+              <h4> نام کشور: ${data.sys.country}</h4>
+              <p class="handel-size"> 
+                <img src="./icons-svg/location.svg" width="18" height="18" alt="location" />
+                عرض جغرافیایی: ${data.coord.lat}
+              </p>
+              <p class="handel-size">
+                <img src="./icons-svg/location.svg" width="18" height="18" alt="location" />
+                 طول جغرافیایی: ${data.coord.lon}
+              </p>
+              <p class="handel-size">
+                <img src="./icons-svg/weather.svg" width="18" height="18" alt="weather" />
+                وضعیت: ${data.weather[0].description}
+              </p>
+              <p class="handel-size">
+                <img
+                src="./icons-svg/temperature.svg"
+                width="18"
+                height="18"
+                alt="temperature"
+                />
+                دما: ${data.main.temp}° سانتی‌گراد 
+              </p>
+              <p class="handel-size">
+                <img
+                src="./icons-svg/humidity.svg"
+                width="18"
+                height="18"
+                alt="humidity"
+                />
+                رطوبت: ${data.main.humidity}%
+              </p>
+              <p class="handel-size">
+                <img
+                src="./icons-svg/wind-speed.svg"
+                width="18"
+                height="18"
+                alt="wind-speed"
+                />
+                سرعت باد: ${data.wind.speed} متر بر ثانیه
+              </p>
+            `;
+        } catch (error) {
+          errorBox.innerHTML = `
+              <span class="error-icon">!</span>
+              <span>مشکلی در دریافت اطلاعات پیش آمد.</span>
+            `;
+          showError();
+        }
+      });
+    </script>
+  </body>
+</html>

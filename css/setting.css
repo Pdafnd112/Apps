@@ -1,0 +1,21 @@
+/* roboto-regular */
+@font-face {
+  font-family: "roboto-regular";
+  src: url("../fonts/Roboto-Regular.eot") format("eot");
+  font-display: swap;
+}
+@font-face {
+  font-family: "roboto-regular";
+  src: url("../fonts/Roboto-Regular.ttf") format("ttf");
+  font-display: swap;
+}
+@font-face {
+  font-family: "roboto-regular";
+  src: url("../fonts/Roboto-Regular.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "roboto-regular";
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2");
+  font-display: swap;
+}

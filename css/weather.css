@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Tahoma", sans-serif;
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #fff;
+  color: #333;
+}
+
+.page-title {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.status-control {
+  background: white;
+  padding: 30px;
+  margin: 30px auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  direction: rtl;
+}
+
+h3,
+h4 {
+  font-family: "roboto-regular";
+  font-size: 22px;
+}
+
+.cityInput,
+.getWeatherBtn {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.getWeatherBtn {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.getWeatherBtn:hover {
+  background-color: #388e3c;
+}
+
+#weatherResult {
+  text-align: right;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-right: 20px;
+}
+
+#error-message {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.error-icon {
+  width: 24px;
+  height: 24px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+.handel-size {
+  display: flex;
+  align-items: center;
+}

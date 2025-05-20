@@ -1,0 +1,58 @@
+/* for header section index.html page */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  width: 100%;
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-left img {
+  width: 20px;
+  height: 24px;
+}
+.logo {
+  font-family: "roboto-regular";
+  font-size: 24px;
+}
+.menu {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.menu li a:hover {
+  color: blue;
+}
+
+.title-menu a {
+  font-family: "roboto-regular";
+  font-size: 16px;
+}
+
