@@ -3,9 +3,8 @@ const userCard = document.getElementById("user-card");
 const userActivity = document.getElementById("user-activity");
 const repoList = document.getElementById("repo-list");
 
-const token = "";
-
-const headers = token ? { Authorization: `token ${token}` } : {};
+// بدون استفاده از توکن
+const headers = {};
 
 function goBack() {
   localStorage.setItem("fromDetailsPage", "true");
@@ -23,34 +22,34 @@ if (!username) {
         userCard.innerHTML = "User not found.";
       } else {
         userCard.innerHTML = `
-                <div class="gallery">
-                  <img src="${data.avatar_url}" alt="${data.login}" />
-                  <span class="space-top">${data.name || data.login}</span>
-                  <span>${data.location || "Location not available"}</span>
-                </div>
-                <div class="history">
-                  <h3>Bio:</h3>
-                  <p class="description">${data.bio || "No bio available"}</p>
-                  <a class="github-page" href="${
-                    data.html_url
-                  }" target="_blank">Visit Github Page</a>
-                  <div>
-                    <span>Login: ${data.login}</span>
-                    <div class="website">Website: ${
-                      data.blog || "No website available"
-                    }</div>
-                  </div>
-                </div>
-              `;
+          <div class="gallery">
+            <img src="${data.avatar_url}" alt="${data.login}" />
+            <span class="space-top">${data.name || data.login}</span>
+            <span>${data.location || "Location not available"}</span>
+          </div>
+          <div class="history">
+            <h3>Bio:</h3>
+            <p class="description">${data.bio || "No bio available"}</p>
+            <a class="github-page" href="${
+              data.html_url
+            }" target="_blank">Visit Github Page</a>
+            <div>
+              <span>Login: ${data.login}</span>
+              <div class="website">Website: ${
+                data.blog || "No website available"
+              }</div>
+            </div>
+          </div>
+        `;
 
         userActivity.innerHTML = `
-                <div class="items">
-                  <div class="followers">Followers: ${data.followers}</div>
-                  <div class="following">Following: ${data.following}</div>
-                  <div class="public-repos">Public Repos: ${data.public_repos}</div>
-                  <div class="public-gists">Public Gists: ${data.public_gists}</div>
-                </div>
-              `;
+          <div class="items">
+            <div class="followers">Followers: ${data.followers}</div>
+            <div class="following">Following: ${data.following}</div>
+            <div class="public-repos">Public Repos: ${data.public_repos}</div>
+            <div class="public-gists">Public Gists: ${data.public_gists}</div>
+          </div>
+        `;
       }
     })
     .catch(() => {
