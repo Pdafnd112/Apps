@@ -44,10 +44,12 @@ window.addEventListener("DOMContentLoaded", () => {
         createClearBtn();
       }
     }
-    localStorage.removeItem("fromDetailsPage");
-  } else {
-    localStorage.removeItem("searchedUsers");
+    // localStorage.removeItem("fromDetailsPage");
   }
+  // else {
+  //   localStorage.removeItem("searchedUsers");
+  // }
+  localStorage.removeItem("fromDetailsPage");
 });
 
 form.addEventListener("submit", async (e) => {
